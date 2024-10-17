@@ -1,0 +1,36 @@
+<section class=" rounded-md border border-gray-300 p-4 pb-4">
+    <div class="relative overflow-x-auto sm:rounded-lg">
+        <p class="p-4 font-semibold"> Recent Sales</p>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 pb-32">
+            <thead class="text-xs">
+                <tr>
+                    <th scope="col" class="p-4"> <div class="flex items-center"> Image</div> </th>
+                    <th scope="col" class="px-6 py-3"> Product name </th>
+                    <th scope="col" class="px-6 py-3"> Color</th>
+                    <th scope="col" class="px-6 py-3"> Category</th>
+                    <th scope="col" class="px-6 py-3"> Accessories</th>
+                    <th scope="col" class="px-6 py-3"> Available </th>
+                    <th scope="col" class="px-6 py-3"> Price</th>
+                    <th scope="col" class="px-6 py-3"> Weight </th>
+                    <th scope="col" class="px-6 py-3"> Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b hover:bg-gray-50 p-4" *ngFor="let sale of sales">
+                    <td class="">
+                      <div class="flex items-center"><img class="w-12 rounded-3xl p-1 " src="{{sale.image}}" alt=""> </div>
+                    </td>
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-400 whitespace-nowrap ">{{sale.product}}</th>
+                    <td class="px-6 py-4"> {{sale.color}}</td>
+                    <td class="px-6 py-4"> {{sale.category}} </td>
+                    <td class="px-6 py-4"> {{sale.available}} </td>
+                    <td class="px-6 py-4"> {{sale.featured}} </td>
+                    <td class="px-6 py-4"> {{sale.price}} </td>
+                    <td class="px-6 py-4"> {{sale.weight}}</td>
+                    <td class="px-6 py-4"> <button class="text-black font-semibold rounded-md px-4 py-1 card" (click)="getSale(sale)">View</button> </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>

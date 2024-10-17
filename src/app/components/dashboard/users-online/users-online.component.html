@@ -1,0 +1,98 @@
+<!-- <section class="rounded-md border border-gray-300 pb-4">
+  <div class="relative overflow-x-auto sm:rounded-lg">
+      <p class="p-4 font-semibold">Users Currently Online</p>
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 pb-32">
+          <thead class="text-xs">
+              <tr>
+                  <th scope="col" class="p-4">
+                      <div class="flex items-center"> Image</div>
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Product name
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Color
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Category
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Accessories
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Available
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Price
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Weight
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Action
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="bg-white border-b hover:bg-gray-50 p-4" *ngFor="let sale of sales">
+                  <td class="">
+                      <div class="flex items-center">
+                          <img class="w-12 rounded-3xl p-1 " src="{{sale.image}}" alt="">
+                      </div>
+                  </td>
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-400 whitespace-nowrap ">
+                     {{sale.product}}
+                  </th>
+                  <td class="px-6 py-4">
+                    {{sale.color}}
+                  </td>
+                  <td class="px-6 py-4">
+                    {{sale.category}}
+                  </td>
+                  <td class="px-6 py-4">
+                    {{sale.available}}
+                  </td>
+                  <td class="px-6 py-4">
+                    {{sale.featured}}
+                  </td>
+                  <td class="px-6 py-4">
+                      {{sale.price}}
+                  </td>
+                  <td class="px-6 py-4">
+                    {{sale.weight}}
+                  </td>
+                  <td class="flex items-center px-6 py-4">
+                    <button class="text-black font-semibold rounded-md px-4 py-1 card" (click)="getSale(sale)">Edit</button>
+                  </td>
+              </tr>
+
+          </tbody>
+      </table>
+  </div>
+</section> -->
+<!-- USERS ONLINE  -->
+<div class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 ">
+  <div class="flex items-center justify-between mb-4">
+      <h5 class=" font-bold leading-none text-gray-900 ">Users Currently Online</h5>
+      <a href="#" class="text-black font-semibold rounded-md px-4 py-1 card">
+          View all
+      </a>
+ </div>
+ <div class="flow-root">
+      <ul role="list" class="divide-y divide-gray-200 ">
+          <li class="py-3 sm:py-4" *ngFor="let sale of sales">
+              <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                      <img class="w-8 h-8 rounded-full" src="{{sale.image}}" alt="Neil image">
+                  </div>
+                  <div class="flex-1 min-w-0 ms-4">
+                      <p class="text-sm font-medium text-gray-900 truncate">{{sale.category}} </p>
+                      <p class="text-sm text-gray-500 truncate dark:text-gray-400">{{sale.product}} | {{sale.color}}</p>
+                  </div>
+                  <div class="inline-flex items-center text-base font-semibold text-gray-900"> {{sale.price}} </div>
+              </div>
+          </li>
+
+      </ul>
+ </div>
+</div>
