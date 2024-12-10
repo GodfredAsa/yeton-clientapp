@@ -13,6 +13,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { StocksComponent } from './components/dashboard/stocks/stocks.component';
 import { AccountProfileComponent } from './components/dashboard/account-profile/account-profile.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MainDashboardComponent } from './components/dashboard/main-dashboard/main-dashboard.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { DonutPieChartComponent } from './components/charts/donut-pie-chart/donut-pie-chart.component';
+import { BarChartComponent } from './components/charts/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +33,18 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     StocksComponent,
     AccountProfileComponent,
     SidebarComponent,
+    MainDashboardComponent,
+    DonutPieChartComponent,
+    BarChartComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgApexchartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

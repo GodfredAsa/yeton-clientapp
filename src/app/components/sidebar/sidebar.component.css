@@ -1,0 +1,11 @@
+.item{
+  padding: 10px 20px 10px 0;
+  color: white;
+}
+
+.item.selected {
+  background-color: #fbf5dd;
+  font-weight: bold;
+  border-radius: 5px;
+  color: black;
+}

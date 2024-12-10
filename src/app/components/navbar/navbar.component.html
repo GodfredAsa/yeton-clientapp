@@ -5,45 +5,24 @@
       <!-- <span class="self-center text-2xl font-semibold whitespace-nowrap">YETON</span> -->
   </a>
   <div class=" flex justify-end ">
-      <button type="button" class=" text-sm rounded-full" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-        <span class="sr-only">Open user menu</span>
-        <img class="w-[40px] rounded-full" src="https://t3.ftcdn.net/jpg/04/28/11/66/360_F_428116625_7bpn1ZTdPnM2iYZgWUsqGIE5pvhUpGYn.jpg" alt="user photo">
-      </button>
 
+    <button type="button" class=" text-sm rounded-full relative " id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom" (click)="viewUserProfile()">
+        <span class="sr-only">Open user menu</span>
+        <img class="w-[40px] rounded-full" src="{{imageUrl}}" alt="user photo">
+      </button>
       <button type="button" class=" text-sm rounded-full md:me-0 mx-4" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"     data-dropdown-placement="bottom">
         <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5.464V3.099m0 2.365a5.338 5.338 0 0 1 5.133 5.368v1.8c0 2.386 1.867 2.982 1.867 4.175C19 17.4 19 18 18.462 18H5.538C5 18 5 17.4 5 16.807c0-1.193 1.867-1.789 1.867-4.175v-1.8A5.338 5.338 0 0 1 12 5.464ZM6 5 5 4M4 9H3m15-4 1-1m1 5h1M8.54 18a3.48 3.48 0 0 0 6.92 0H8.54Z"/>
         </svg>
       </button>
 
-      <button type="button" class=" text-sm rounded-full md:me-0 mx-4" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-        <svg class="w-6 h-6 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-        </svg>
+        <span class=" text-green-600 p-1  font-extrabold">2</span>
+
+
+
+      <button type="button" class=" text-sm rounded-md md:me-0 mx-4 border border-black p-1.5 hover:bg-[#1f2937] hover:text-white" id="user-menu-button " aria-expanded="false" (click)="logoutUser()"     data-dropdown-placement="bottom">Logout
       </button>
 
-
-      <!-- Dropdown menu -->
-      <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
-        <div class="px-4 py-3">
-          <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-          <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{"van@gmail.com"}}</span>
-        </div>
-        <ul class="py-2" aria-labelledby="user-menu-button">
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-          </li>
-        </ul>
-      </div>
   </div>
   </div>
 </nav>

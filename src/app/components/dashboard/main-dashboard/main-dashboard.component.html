@@ -1,0 +1,28 @@
+<div class="p-4 sm:ml-64">
+  <div class="p-4 rounded-lg dark:border-gray-700">
+    <app-summary></app-summary>
+  </div>
+</div>
+
+<div class="p-4 sm:ml-64">
+  <div class="p-4">
+    <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6 m-3 ">
+      <app-donut-pie-chart
+        [chartType]="'donut'"
+        [seriesData]="[25, 15, 44, 55, 41]"
+        [colors]="['#ffc9c9', '#00E396', '#eebefa', '#f59f00', '#f03e3e']"
+      >
+      </app-donut-pie-chart>
+
+      <app-donut-pie-chart
+        [chartType]="'pie'"
+        [seriesData]="[30, 20, 25, 10, 15]"
+        [colors]="['#546E7A', '#D4526E', '#13D8AA', '#A5978B', '#2B908F']"
+      >
+      </app-donut-pie-chart>
+     <div class="xl:col-span-2 ">
+      <app-bar-chart></app-bar-chart>
+     </div>
+    </div>
+  </div>
+</div>
