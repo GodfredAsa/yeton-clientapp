@@ -27,10 +27,11 @@ export type ChartOptions = {
 export class DonutPieChartComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
-
   @Input() chartType: 'pie' | 'donut' = 'pie';
   @Input() seriesData: ApexNonAxisChartSeries = [44, 55, 13, 43, 22];
   @Input() colors: string[] = ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0'];
+  @Input() labels: string[] = [];
+
 
   constructor() {
     this.chartOptions = {
@@ -38,7 +39,7 @@ export class DonutPieChartComponent implements OnInit {
       chart: {
         type: 'pie',
       },
-      labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+      labels: ["Team A", "Team B", "Team C", "Team D"],
       plotOptions: {
         pie: {
           donut: {
@@ -78,5 +79,6 @@ export class DonutPieChartComponent implements OnInit {
     // Update series data and colors
     this.chartOptions.series = this.seriesData;
     this.chartOptions.colors = this.colors;
+    this.labels = this.labels
   }
 }
