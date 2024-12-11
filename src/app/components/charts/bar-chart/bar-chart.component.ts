@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 
 import {
   ApexAxisChartSeries,
@@ -6,9 +6,9 @@ import {
   ChartComponent,
   ApexDataLabels,
   ApexPlotOptions,
-  ApexYAxis,
-  ApexTitleSubtitle,
+  ApexResponsive,
   ApexXAxis,
+  ApexLegend,
   ApexFill
 } from "ng-apexcharts";
 
@@ -17,10 +17,11 @@ export type ChartOptions = {
   chart: ApexChart;
   dataLabels: ApexDataLabels;
   plotOptions: ApexPlotOptions;
-  yaxis: ApexYAxis;
+  responsive: ApexResponsive[];
   xaxis: ApexXAxis;
+  legend: ApexLegend;
   fill: ApexFill;
-  title: ApexTitleSubtitle;
+  colors?: string[];
 };
 
 @Component({
@@ -33,116 +34,71 @@ export class BarChartComponent {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
+  // Accept inputs from the parent component
+  @Input() series: ApexAxisChartSeries = [
+    {
+      name: "Default Series",
+      data: [10, 20, 30, 40, 50]
+    }
+  ];
+  @Input() colors: string[] = ["#008FFB", "#00E396", "#FEB019", "#FF4560"];
+  @Input() dataLabels: ApexDataLabels = {
+    enabled: true
+  };
+  @Input() legend: ApexLegend = {
+    position: "right",
+    offsetX: 0,
+    offsetY: 50
+  };
+  @Input() chartName: string = "Default Chart";
+
   constructor() {
     this.chartOptions = {
-      series: [
-        {
-          name: "Inflation",
-          data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
-        }
-      ],
+      series: [], // Initialized empty, updated in ngOnInit
       chart: {
+        type: "bar",
         height: 350,
-        type: "bar"
+        stacked: false,
       },
-      plotOptions: {
-        bar: {
-          dataLabels: {
-            position: "top" // top, center, bottom
-          }
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        formatter: function(val) {
-          return val + "%";
-        },
-        offsetY: -20,
-        style: {
-          fontSize: "12px",
-          colors: ["#304758"]
-        }
-      },
-
-      xaxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
-        ],
-        position: "top",
-        labels: {
-          offsetY: -18
-        },
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
-        crosshairs: {
-          fill: {
-            type: "gradient",
-            gradient: {
-              colorFrom: "#D8E3F0",
-              colorTo: "#BED1E6",
-              stops: [0, 100],
-              opacityFrom: 0.4,
-              opacityTo: 0.5
+      dataLabels: {},
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            legend: {
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
             }
           }
-        },
-        tooltip: {
-          enabled: true,
-          offsetY: -35
         }
+      ],
+      xaxis: {
+        categories: [
+          "2011 Q1",
+          "2011 Q2",
+          "2011 Q3",
+          "2011 Q4",
+          "2012 Q1",
+          "2012 Q2",
+          "2012 Q3",
+          "2012 Q4"
+        ]
       },
       fill: {
-        type: "gradient",
-        gradient: {
-          shade: "light",
-          type: "horizontal",
-          shadeIntensity: 0.25,
-          gradientToColors: undefined,
-          inverseColors: true,
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [50, 0, 100, 100]
-        }
+        opacity: 1
       },
-      yaxis: {
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
-        labels: {
-          show: false,
-          formatter: function(val) {
-            return val + "%";
-          }
-        }
-      },
-      title: {
-        text: "Monthly Inflation in Argentina, 2002",
-        floating: false,
-        offsetY: 320,
-        align: "center",
-        style: {
-          color: "#444"
-        }
-      }
+      legend: {}, // Updated dynamically
+      colors: [], // Updated dynamically
     };
   }
 
+  ngOnInit(): void {
+    // Update options based on inputs
+    this.chartOptions.series = this.series;
+    this.chartOptions.colors = this.colors;
+    this.chartOptions.dataLabels = this.dataLabels;
+    this.chartOptions.legend = this.legend;
+    console.log(`Chart Name: ${this.chartName}`);
+  }
 }

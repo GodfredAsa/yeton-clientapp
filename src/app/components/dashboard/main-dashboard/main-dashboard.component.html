@@ -6,23 +6,33 @@
 
 <div class="p-4 sm:ml-64">
   <div class="p-4">
-    <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6 m-3 ">
+    <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6 m-3">
       <app-donut-pie-chart
         [chartType]="'donut'"
-        [seriesData]="[25, 15, 44, 55, 41]"
-        [colors]="['#ffc9c9', '#00E396', '#eebefa', '#f59f00', '#f03e3e']"
+        [seriesData]="[25, 15, 44, 55]"
+        [colors]="['#ffc9c9', '#00E396', '#eebefa', '#f59f00']"
       >
       </app-donut-pie-chart>
 
       <app-donut-pie-chart
         [chartType]="'pie'"
-        [seriesData]="[30, 20, 25, 10, 15]"
-        [colors]="['#546E7A', '#D4526E', '#13D8AA', '#A5978B', '#2B908F']"
+        [seriesData]="[30, 20, 25, 10]"
+        [colors]="['#ba75f6', '#D4526E', '#13D8AA', '#A5978B']"
       >
       </app-donut-pie-chart>
-     <div class="xl:col-span-2 ">
-      <app-bar-chart></app-bar-chart>
-     </div>
+
+      <div class="">
+        <app-bar-chart
+          [series]="[ { name: 'Sales', data: [30, 40, 45, 50, 49, 60, 70, 91] }]"
+          [colors]="['#91a7ff']"
+          [dataLabels]="{ enabled: true }"
+          [legend]="{ position: 'bottom', offsetX: -10, offsetY: 0 }"
+          [chartName]="'Sales Overview Chart'"
+        >
+        </app-bar-chart>
+        <app-stack-bar-chart></app-stack-bar-chart>
+        <app-monthly-sales-chart></app-monthly-sales-chart>
+      </div>
     </div>
   </div>
 </div>

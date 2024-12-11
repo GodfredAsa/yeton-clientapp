@@ -19,6 +19,8 @@ import { MainDashboardComponent } from './components/dashboard/main-dashboard/ma
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DonutPieChartComponent } from './components/charts/donut-pie-chart/donut-pie-chart.component';
 import { BarChartComponent } from './components/charts/bar-chart/bar-chart.component';
+import { StackBarChartComponent } from './components/charts/stack-bar-chart/stack-bar-chart.component';
+import { MonthlySalesChartComponent } from './components/charts/monthly-sales-chart/monthly-sales-chart.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { BarChartComponent } from './components/charts/bar-chart/bar-chart.compo
     MainDashboardComponent,
     DonutPieChartComponent,
     BarChartComponent,
+    StackBarChartComponent,
+    MonthlySalesChartComponent,
   ],
   imports: [
     BrowserModule,

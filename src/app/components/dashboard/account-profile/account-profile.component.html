@@ -1,1 +1,16 @@
-<p>account-profile works!</p>
+<div class="md:ml-32 bg-[#ffffff]">
+  <section class="sm:w-full md:w-[60%] p-32 m-auto">
+
+    <div class=" pb-8">
+      <img src="{{user.imageUrl}}" alt="" class="rounded-full w-2/4 md:w-1/4 m-auto ">
+    </div>
+    <form class=" " [formGroup]="userForm" >
+     <input type="text" class="w-full p-4 mt-3 border border-[#1e1e1e]  rounded-xl text-red-800"  formControlName="name" disabled="true">
+     <input type="text" class="w-full p-4 mt-3 border border-[#1e1e1e]  rounded-xl" placeholder="2eu12e2102" formControlName="gender" >
+     <input type="text" class="w-full p-4 mt-3 border border-[#1e1e1e]  rounded-xl" placeholder="fwf23eqwff" formControlName="phone" >
+
+     <button class="w-full p-5 bg-[#1e1e1e] mt-4 font-extrabold text-xl text-white rounded-xl" (click)="updateUser()">Update Profile</button>
+    </form>
+
+  </section>
+</div>
