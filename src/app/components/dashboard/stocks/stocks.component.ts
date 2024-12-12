@@ -90,8 +90,9 @@ export class StocksComponent implements OnInit, OnDestroy{
     this.subscriptions.push(
       this._stockService.deleteStock(this.selectedStock.itemId).subscribe({
         next: (res) => {
-          console.log(res);
-        }, error: (err) => {console.log(err.error.msg);
+          window.location.reload()
+        }, error: (err) => {
+          window.location.reload()
         }
       })
     )

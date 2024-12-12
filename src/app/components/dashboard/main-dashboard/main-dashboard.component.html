@@ -1,18 +1,37 @@
+
+
+
+
+
+
+
+
 <div class="p-4 sm:ml-64">
+
+  <h1 class="text-xl font-extralight">Hey, Welcome to Dashboard</h1>
   <div class="p-4 rounded-lg dark:border-gray-700">
     <app-summary></app-summary>
   </div>
 </div>
 
-<div class="p-4 sm:ml-64">
-  <div class="p-4">
-    <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6 m-3">
+<div class="sm:ml-64">
+  <div class=" rounded-lg dark:border-gray-700">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-[#f7f7f7] p-6 rounded-md">
       <app-donut-pie-chart
         [chartType]="'donut'"
         [seriesData]="[25, 15, 44, 55]"
         [colors]="['#ffc9c9', '#00E396', '#eebefa', '#f59f00']"
       >
       </app-donut-pie-chart>
+
+      <div class="col-span-2">
+        <app-monthly-sales-chart></app-monthly-sales-chart>
+      </div>
+
+
+      <div class="col-span-2 card bg-white">
+        <app-bar-chart></app-bar-chart>
+      </div>
 
       <app-donut-pie-chart
         [chartType]="'pie'"
@@ -21,18 +40,6 @@
       >
       </app-donut-pie-chart>
 
-      <div class="">
-        <app-bar-chart
-          [series]="[ { name: 'Sales', data: [30, 40, 45, 50, 49, 60, 70, 91] }]"
-          [colors]="['#91a7ff']"
-          [dataLabels]="{ enabled: true }"
-          [legend]="{ position: 'bottom', offsetX: -10, offsetY: 0 }"
-          [chartName]="'Sales Overview Chart'"
-        >
-        </app-bar-chart>
-        <app-stack-bar-chart></app-stack-bar-chart>
-        <app-monthly-sales-chart></app-monthly-sales-chart>
-      </div>
     </div>
   </div>
 </div>

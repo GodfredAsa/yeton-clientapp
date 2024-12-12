@@ -21,6 +21,7 @@ import { DonutPieChartComponent } from './components/charts/donut-pie-chart/donu
 import { BarChartComponent } from './components/charts/bar-chart/bar-chart.component';
 import { StackBarChartComponent } from './components/charts/stack-bar-chart/stack-bar-chart.component';
 import { MonthlySalesChartComponent } from './components/charts/monthly-sales-chart/monthly-sales-chart.component';
+import { CategoriesComponent } from './components/dashboard/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MonthlySalesChartComponent } from './components/charts/monthly-sales-ch
     BarChartComponent,
     StackBarChartComponent,
     MonthlySalesChartComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
