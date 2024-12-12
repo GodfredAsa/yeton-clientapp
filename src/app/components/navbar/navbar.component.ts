@@ -25,6 +25,7 @@ export class NavbarComponent {
     this.subscriptions.push(
       this._userService.logoutUser(this._utilService.getValueFromLocalStorage("phone")).subscribe({
         next: (res) => {
+          this._utilService.removeAllValuesFromLocalStorage()
           this._router.navigateByUrl("/")
         },
         error: (err) => {
