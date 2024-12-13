@@ -1,21 +1,12 @@
-
-
-
-
-
-
-
-
-<div class="p-4 sm:ml-64">
-
-  <h1 class="text-xl font-extralight">Hey, Welcome to Dashboard</h1>
-  <div class="p-4 rounded-lg dark:border-gray-700">
+<div class="sm:ml-64">
+  <h1 class="text-xl font-extralight p-6">Hey {{username}}, Welcome to Dashboard</h1>
+  <div class="rounded-lg dark:border-gray-700">
     <app-summary></app-summary>
   </div>
 </div>
 
 <div class="sm:ml-64">
-  <div class=" rounded-lg dark:border-gray-700">
+  <!-- <div class=" rounded-lg dark:border-gray-700"> -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-[#f7f7f7] p-6 rounded-md">
       <app-donut-pie-chart
         [chartType]="'donut'"
@@ -41,5 +32,5 @@
       </app-donut-pie-chart>
 
     </div>
-  </div>
+  <!-- </div> -->
 </div>

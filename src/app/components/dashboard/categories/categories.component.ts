@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { CategoryService } from '../../services/category.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MOBILE_NUMBER_VALIDATE } from '../../pattern-validators/pattern.validators';
+import { UtilService } from '../../services/util.service';
 
 @Component({
   selector: 'app-categories',
@@ -25,7 +26,10 @@ export class CategoriesComponent implements OnInit{
     categoryImageUrl: new FormControl("", [Validators.required, Validators.minLength(20)]),
   })
 
-  constructor(private _categoryService :CategoryService){}
+  constructor(
+    private _categoryService :CategoryService,
+    private _utilsService : UtilService
+  ){}
 
 
 
@@ -40,6 +44,8 @@ export class CategoriesComponent implements OnInit{
         next: (res) => {
           this.categories = res
           console.log(this.categories);
+          this._utilsService.setObjectToLocalStorage('categories', this.categories)
+
         }, error: (err) => {
           console.log(err.error.message);
 

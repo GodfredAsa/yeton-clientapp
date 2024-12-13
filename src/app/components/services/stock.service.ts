@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/app/environment/environment';
 import { Stock } from '../model/stock.model';
 import { CustomResponse } from '../model/response.message';
+import { ItemModel } from '../model/item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,11 @@ export class StockService {
 
   deleteStock(itemId: string): Observable<CustomResponse>{
     return this.http.delete<CustomResponse>(`${this.host}/admin/items/${itemId}`)
+  }
+
+
+  addStock(stock: ItemModel): Observable<Stock>{
+    return this.http.post<Stock>(`${this.host}/admin/items`, stock);
   }
 
 
