@@ -5,9 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SummaryComponent } from './components/dashboard/summary/summary.component';
 import { ProductOverviewComponent } from './components/dashboard/product-overview/product-overview.component';
-import { RecentSalesComponent } from './components/dashboard/recent-sales/recent-sales.component';
 import { UsersOnlineComponent } from './components/dashboard/users-online/users-online.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StocksComponent } from './components/dashboard/stocks/stocks.component';
@@ -22,15 +20,18 @@ import { BarChartComponent } from './components/charts/bar-chart/bar-chart.compo
 import { StackBarChartComponent } from './components/charts/stack-bar-chart/stack-bar-chart.component';
 import { MonthlySalesChartComponent } from './components/charts/monthly-sales-chart/monthly-sales-chart.component';
 import { CategoriesComponent } from './components/dashboard/categories/categories.component';
+import { FaqsComponent } from './components/dashboard/faqs/faqs.component';
+import { TitleComponent } from './components/title/title.component';
+import { OrderComponent } from './components/dashboard/orders/orders.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    SummaryComponent,
     ProductOverviewComponent,
-    RecentSalesComponent,
+    OrderComponent,
     UsersOnlineComponent,
     NavbarComponent,
     StocksComponent,
@@ -42,6 +43,9 @@ import { CategoriesComponent } from './components/dashboard/categories/categorie
     StackBarChartComponent,
     MonthlySalesChartComponent,
     CategoriesComponent,
+    FaqsComponent,
+    TitleComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,

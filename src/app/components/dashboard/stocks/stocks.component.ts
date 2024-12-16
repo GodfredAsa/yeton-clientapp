@@ -36,7 +36,7 @@ export class StocksComponent implements OnInit, OnDestroy{
       cost: new FormControl("", [Validators.required, Validators.minLength(5)]),
       image: new FormControl("", [Validators.required, Validators.minLength(5)]),
       hasVendor: new FormControl(true, [Validators.required, Validators.minLength(5)]),
-      hasGallery: new FormControl(false, [Validators.required, Validators.minLength(5)]),
+      hasGallery: new FormControl(true, [Validators.required, Validators.minLength(5)]),
       forSale: new FormControl(true, [Validators.required, Validators.minLength(5)]),
 
     })
@@ -71,9 +71,7 @@ export class StocksComponent implements OnInit, OnDestroy{
         (stock.brand && stock.brand.toLocaleLowerCase().includes(searchLower)) ||
         (stock.model && stock.model.toLocaleLowerCase().includes(searchLower)) ||
         (stock.price.toString() && stock.price.toString().toLocaleLowerCase().includes(searchLower)) ||
-
         (stock.condition && stock.condition.toLocaleLowerCase().includes(searchLower)) ||
-
         (stock.stock.toString() && stock.stock.toString().toLocaleLowerCase().includes(searchLower))
       ) {
         searchedStocks.push(stock);
