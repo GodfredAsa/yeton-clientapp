@@ -1,0 +1,223 @@
+<app-title title="Orders Summary"></app-title>
+
+<div class="sm:ml-64">
+  <div class="rounded-lg dark:border-gray-700">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-[#f7f7f7] p-6 rounded-md">
+      <lib-stats title="Total Orders" value="450"></lib-stats>
+      <lib-stats title="Total Cost of Orders" value="450"symbol="GHS"></lib-stats>
+      <lib-stats title="Total Profit" value="450"symbol="GHS"></lib-stats>
+      </div>
+  </div>
+</div>
+
+
+<!--==== ALL PENDING ORDER  ===== -->
+<section class=" sm:ml-64 flex justify-between bg-white border mt-4">
+  <h1 class="text-black pt-8 pl-8"> {{selectedElement}} ORDERS</h1>
+  <div class="p-4 sm:ml-64 flex justify-end text-white bg-white mt-4" >
+    <button
+      class="px-2 py-4"
+      [ngClass]="{'bg-[#689235]': selectedElement === el, 'bg-black': selectedElement !== el}"
+      *ngFor="let el of tabElements"
+      (click)="selectElement(el)">
+      {{el}}
+    </button>
+  </div>
+
+</section>
+
+<div class="p-4 sm:ml-64">
+  <div class=" flex justify-between">
+  </div>
+  <div class="p-0 rounded-lg dark:border-gray-700">
+      <div class="relative overflow-x-auto sm:rounded-lg">
+          <table class="w-full text-sm text-left rtl:text-right pb-32 bg-white">
+              <thead class="text-xs">
+                  <tr>
+                      <th scope="col" class="px-6 py-3"> Item</th>
+                      <th scope="col" class="px-6 py-3"> Date</th>
+                      <th scope="col" class="px-6 py-3"> Order Status</th>
+                      <th scope="col" class="px-6 py-3"> Qty</th>
+                      <th scope="col" class="px-6 py-3"> Total Price (GHS)</th>
+                      <th scope="col" class="px-6 py-3">Payment Status</th>
+                      <th scope="col" class="px-6 py-3"> By </th>
+                      <th scope="col" class="px-6 py-3"> View </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr class="bg-white border-b hover:bg-gray-50 p-4 " *ngFor="let order of orders">
+                      <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap ">{{order.item}}</th>
+                      <td class="px-6 py-4"> {{order.orderDate}} </td>
+                      <td class="px-6 py-4"> {{order.orderStatus}} </td>
+                      <td class="px-6 py-4"> {{order.quantity}} </td>
+                      <td class="px-6 py-4"> {{order.totalCost}} </td>
+                      <td class="px-6 py-4"> {{order.paymentStatus}} </td>
+                      <td class="px-6 py-4"> {{order.user}}</td>
+                      <td class="px-6 py-4 flex justify-between">
+                        <button (click)="getSelectedOrder(order)">
+                          <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2.9" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
+                          </svg>
+                        </button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+
+<!-- SELECTED ORDER MODAL  -->
+<div id="default-modal" tabindex="-1" aria-hidden="true" class=" overflow-y-auto overflow-x-hidden fixed inset-0 z-50 flex items-center justify-center bg-[#00000044]" *ngIf="selectedOrder">
+  <div class="relative p-4 w-full max-w-2xl max-h-full" >
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow card">
+          <!-- Modal header -->
+          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
+            <h3 class="text-xl font-semibold text-gray-800 mb-1">Order Details</h3>
+
+              <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal"  (click)="unSelectOrder()">
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                  </svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+          </div>
+          <!-- Modal body -->
+          <div class="bg-white shadow-lg rounded-lg p-6 m-auto" >
+            <table class="table-auto w-full border-collapse border border-gray-200">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-600">Description</th>
+                  <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-600">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Order ID</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{selectedOrder.orderId}}</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Order Code</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{selectedOrder.orderCode}}</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Item</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{selectedOrder.item}}</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">User</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{selectedOrder.user}}</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Quantity</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{selectedOrder.quantity}}</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Price</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">${{selectedOrder.price}}</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Total Cost</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">${{selectedOrder.totalCost}}</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Order Status</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{selectedOrder.orderStatus}}</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Payment Status</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{selectedOrder.paymentStatus}}</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Order Date</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{selectedOrder.orderDate}}</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Updated Date</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{selectedOrder.updatedDate}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="flex justify-end gap-2">
+              <button class="bg-[#D8F36F] py-3 px-2 rounded mt-3 text-xl" (click)="cancelOrder()">Cancel</button>
+              <button class="bg-[#000000] text-white py-3 px-2 rounded mt-3 text-xl" (click)="completeOrder()" *ngIf="selectedOrder.orderStatus === 'PENDING' ">Complete</button>
+            </div>
+
+          </div>
+
+      </div>
+  </div>
+</div>
+
+<!-- UPDATING ORDER AND ORDER DETAILS  -->
+<div class="bg-gray-100 py-10" *ngIf="!true">
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-white shadow-lg rounded-lg p-6 m-auto sm:w-[40%] md:w-[60%]" >
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">Order Details</h2>
+      <table class="table-auto w-full border-collapse border border-gray-200">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-600">Description</th>
+            <th class="border border-gray-300 px-4 py-2 text-left text-sm font-medium text-gray-600">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Order ID</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{order.orderId}}</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Order Code</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{order.orderCode}}</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Item</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{order.item}}</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">User</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{order.user}}</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Quantity</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{order.quantity}}</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Price</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">${{order.price}}</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Total Cost</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">${{order.totalCost}}</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Order Status</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{order.orderStatus}}</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Payment Status</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{order.paymentStatus}}</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Order Date</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{order.orderDate}}</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Updated Date</td>
+            <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">{{order.updatedDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="flex justify-end gap-2">
+        <button class="bg-[#D8F36F] py-3 px-2 rounded mt-3 text-xl">Cancel</button>
+        <button class="bg-[#000000] text-white py-3 px-2 rounded mt-3 text-xl">Update</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

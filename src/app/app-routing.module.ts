@@ -5,9 +5,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { StocksComponent } from './components/dashboard/stocks/stocks.component';
 import { MainDashboardComponent } from './components/dashboard/main-dashboard/main-dashboard.component';
 import { AccountProfileComponent } from './components/dashboard/account-profile/account-profile.component';
-import { RecentSalesComponent } from './components/dashboard/recent-sales/recent-sales.component';
 import { FaqsComponent } from './components/dashboard/faqs/faqs.component';
 import { CategoriesComponent } from './components/dashboard/categories/categories.component';
+import { OrderComponent } from './components/dashboard/orders/orders.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -18,7 +18,7 @@ const routes: Routes = [
       { path: "stocks", component: StocksComponent},
       { path: "categories", component: CategoriesComponent},
       { path: "profile", component: AccountProfileComponent},
-      { path: "sales", component: RecentSalesComponent},
+      { path: "orders", component: OrderComponent},
       { path: "faqs", component: FaqsComponent},
 
 

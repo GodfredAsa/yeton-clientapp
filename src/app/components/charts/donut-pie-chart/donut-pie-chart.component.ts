@@ -27,11 +27,16 @@ export type ChartOptions = {
 export class DonutPieChartComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+
   @Input() chartType: 'pie' | 'donut' = 'pie';
   @Input() seriesData: ApexNonAxisChartSeries = [44, 55, 13, 43, 22];
   @Input() colors: string[] = ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0'];
   @Input() labels: string[] = [];
-
+  @Input() title: string;
+  @Input() legend: ApexLegend = {
+    position: 'bottom',
+    horizontalAlign: 'center'
+  };
 
   constructor() {
     this.chartOptions = {
@@ -39,7 +44,7 @@ export class DonutPieChartComponent implements OnInit {
       chart: {
         type: 'pie',
       },
-      labels: ["Team A", "Team B", "Team C", "Team D"],
+      labels: [],
       plotOptions: {
         pie: {
           donut: {
@@ -47,10 +52,7 @@ export class DonutPieChartComponent implements OnInit {
           },
         },
       },
-      legend: {
-        position: 'bottom', // Place legend at the bottom
-        horizontalAlign: 'center',
-      },
+      legend: {}, // Initialize as empty
       responsive: [
         {
           breakpoint: 480,
@@ -76,9 +78,10 @@ export class DonutPieChartComponent implements OnInit {
       this.chartOptions.chart.type = 'pie';
     }
 
-    // Update series data and colors
+    // Update series data, colors, labels, and legend dynamically
     this.chartOptions.series = this.seriesData;
     this.chartOptions.colors = this.colors;
-    this.labels = this.labels
+    this.chartOptions.labels = this.labels;
+    this.chartOptions.legend = this.legend;
   }
 }

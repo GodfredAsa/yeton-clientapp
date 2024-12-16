@@ -1,17 +1,27 @@
+
+<app-title title="Dashboard"></app-title>
+
 <div class="sm:ml-64">
-  <h1 class="text-xl font-extralight p-6">Hey {{username}}, Welcome to Dashboard</h1>
   <div class="rounded-lg dark:border-gray-700">
-    <app-summary></app-summary>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-[#f7f7f7] p-6 rounded-md">
+      <lib-stats title="Total Cost" value={{summaryStatistics.totalRevenue}} symbol="GHS"></lib-stats>
+      <lib-stats title="Gross Profit" value={{summaryStatistics.expectedProfit}} symbol="GHS"></lib-stats>
+      <lib-stats title="Total Users" value={{summaryStatistics.userStats.totalUsers}}></lib-stats>
+      <lib-stats title="Current Stock" value={{summaryStatistics.currentStock}}></lib-stats>
+      <lib-stats title="Current Orders" value={{summaryStatistics.orderSummary.pending}}></lib-stats>
+      <lib-stats title="Total Categories" value={{summaryStatistics.categories}} ></lib-stats>
+      </div>
   </div>
 </div>
 
 <div class="sm:ml-64">
-  <!-- <div class=" rounded-lg dark:border-gray-700"> -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-[#f7f7f7] p-6 rounded-md">
       <app-donut-pie-chart
         [chartType]="'donut'"
-        [seriesData]="[25, 15, 44, 55]"
-        [colors]="['#ffc9c9', '#00E396', '#eebefa', '#f59f00']"
+        [seriesData]="[25, 15]"
+        [colors]="['#000000', '#AED21E']"
+        [labels]="['Orange', 'Banana']"
+        title="Fruits Distribution chart"
       >
       </app-donut-pie-chart>
 
@@ -19,17 +29,30 @@
         <app-monthly-sales-chart></app-monthly-sales-chart>
       </div>
 
-
-      <div class="col-span-2 card bg-white">
-        <app-bar-chart></app-bar-chart>
-      </div>
-
       <app-donut-pie-chart
         [chartType]="'pie'"
-        [seriesData]="[30, 20, 25, 10]"
-        [colors]="['#ba75f6', '#D4526E', '#13D8AA', '#A5978B']"
+        [seriesData]="[25, 15]"
+        [colors]="['#000000', '#AED21E']"
+        [labels]="['Orange', 'Banana']"
+        title="Fruits Distribution chart"
       >
       </app-donut-pie-chart>
+
+      <div class="col-span-2 card bg-white">
+        <app-bar-chart
+          [series]="[
+            { name: 'Sales', data: [44, 55, 41, 64] },
+            { name: 'Revenue', data: [53, 32, 33, 52] }
+          ]"
+          [colors]="['#000000', '#AED21E']"
+          [dataLabels]="{ enabled: true }"
+          [legend]="{ position: 'bottom', offsetX: 0, offsetY: 0 }"
+          [chartTitle]="'Quarterly Sales Chart'"
+          [categories]="['Q1 2023', 'Q2 2023', 'Q3 2023', 'Q4 2023']">
+        </app-bar-chart>
+
+      </div>
+
 
     </div>
   <!-- </div> -->
