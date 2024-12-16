@@ -10,7 +10,7 @@ export class SidebarComponent {
   sideBarItems = [
     {icon: "", name: "Dashboard", link: 'dashboard'},
     {icon: "", name: "Stocks", link: 'dashboard/stocks'},
-    {icon: "", name: "Sales" , link: 'dashboard/sales'},
+    {icon: "", name: "Orders" , link: 'dashboard/orders'},
     {icon: "", name: "Categories", link: 'dashboard/categories'},
     {icon: "", name: "FAQs", link: 'dashboard/faqs'},
   ]
