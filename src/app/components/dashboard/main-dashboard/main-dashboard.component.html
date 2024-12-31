@@ -2,58 +2,69 @@
 <app-title title="Dashboard"></app-title>
 
 <div class="sm:ml-64">
-  <div class="rounded-lg dark:border-gray-700">
+  <div class="rounded-lg dark:border-gray-700" *ngIf="summaryStatistics">
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-[#f7f7f7] p-6 rounded-md">
-      <lib-stats title="Total Cost" value={{summaryStatistics.totalRevenue}} symbol="GHS"></lib-stats>
-      <lib-stats title="Gross Profit" value={{summaryStatistics.expectedProfit}} symbol="GHS"></lib-stats>
-      <lib-stats title="Total Users" value={{summaryStatistics.userStats.totalUsers}}></lib-stats>
-      <lib-stats title="Current Stock" value={{summaryStatistics.currentStock}}></lib-stats>
-      <lib-stats title="Current Orders" value={{summaryStatistics.orderSummary.pending}}></lib-stats>
-      <lib-stats title="Total Categories" value={{summaryStatistics.categories}} ></lib-stats>
+      <lib-stats title="Total Cost" value={{formatToCommaSeparation(summaryStatistics.totalRevenue)}} symbol="GHS"></lib-stats>
+      <lib-stats title="Gross Profit" value={{formatToCommaSeparation(summaryStatistics.expectedProfit)}} symbol="GHS"></lib-stats>
+      <lib-stats title="Total Users" value={{formatToCommaSeparation(summaryStatistics.userStats.totalUsers)}}></lib-stats>
+      <lib-stats title="Current Stock" value={{formatToCommaSeparation(summaryStatistics.currentStock)}}></lib-stats>
+      <lib-stats title="Current Orders" value={{formatToCommaSeparation(summaryStatistics.orderSummary.pending)}}></lib-stats>
+      <lib-stats title="Total Categories" value={{formatToCommaSeparation(summaryStatistics.categories)}} ></lib-stats>
       </div>
   </div>
 </div>
 
 <div class="sm:ml-64">
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-[#f7f7f7] p-6 rounded-md">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-[#f7f7f7] p-6 rounded-md" *ngIf="vendorItemData">
       <app-donut-pie-chart
         [chartType]="'donut'"
-        [seriesData]="[25, 15]"
-        [colors]="['#000000', '#AED21E']"
-        [labels]="['Orange', 'Banana']"
-        title="Fruits Distribution chart"
+        [seriesData]="vendorItemData.data"
+        [colors]="['#585858', '#AED21E']"
+        [labels]="vendorItemData.labels"
+        title="Vendor to Non-Vendor Item Distribution"
       >
       </app-donut-pie-chart>
 
-      <div class="col-span-2">
-        <app-monthly-sales-chart></app-monthly-sales-chart>
+      <div class="col-span-2" *ngIf="dailySales">
+        <app-line-chart
+        [series]="[{ name: 'Cost Of Item', data: dailySales.data }, { name: 'Profit On Item', data: dailySales.profits }]"
+        [chart]="{ height: 350, type: 'line', zoom: { enabled: false } }"
+        [xaxis]="{ categories: dailySales.labels }"
+        [stroke]="{ curve: 'smooth' }"
+        [dataLabels]="{ enabled: false }"
+        [markers]="{ size: 5 }"
+        [colors]="['#585858', '#AED21E']"
+        [yaxis]="{ title: { text: 'Sales (GHC)' } }"
+        [grid]="{ row: { colors: ['#f3f3f3', 'transparent'], opacity: 0.5 } }"
+        [legend]="{ show: true, position: 'bottom' }"
+        [title]="{ text: 'Daily Sales Performance Indicators', align: 'center' }"
+      ></app-line-chart>
+
       </div>
 
-      <app-donut-pie-chart
-        [chartType]="'pie'"
-        [seriesData]="[25, 15]"
-        [colors]="['#000000', '#AED21E']"
-        [labels]="['Orange', 'Banana']"
-        title="Fruits Distribution chart"
+      <!-- <div *ngIf="stockLevelData">
+        <app-donut-pie-chart
+          [chartType]="'pie'"
+          [seriesData]="stockLevelData.data"
+          [colors]="['#585858', '#AED21E']"
+          [labels]="stockLevelData.levels"
+          title="Fruits Distribution chart"
+          [labels]="stockLevelData.labels"
       >
       </app-donut-pie-chart>
+      </div> -->
 
-      <div class="col-span-2 card bg-white">
+      <div class="col-span-3 card bg-white">
         <app-bar-chart
-          [series]="[
-            { name: 'Sales', data: [44, 55, 41, 64] },
-            { name: 'Revenue', data: [53, 32, 33, 52] }
-          ]"
-          [colors]="['#000000', '#AED21E']"
+          [series]="[{ name: 'Stock Levels', data: stockLevelData.data },]"
+          [colors]="['#585858', '#000000']"
           [dataLabels]="{ enabled: true }"
           [legend]="{ position: 'bottom', offsetX: 0, offsetY: 0 }"
-          [chartTitle]="'Quarterly Sales Chart'"
-          [categories]="['Q1 2023', 'Q2 2023', 'Q3 2023', 'Q4 2023']">
+          [chartTitle]="'Stock Levels Charts'"
+          [categories]="stockLevelData.labels">
         </app-bar-chart>
 
       </div>
-
-
     </div>
   <!-- </div> -->
 </div>

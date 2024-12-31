@@ -15,11 +15,7 @@ export class AccountProfileComponent implements OnInit{
   constructor(
     private _utilService: UtilService,
     private fb: FormBuilder
-  ){
-   if(this.user){
-
-   }
-  }
+  ){}
 
 
   ngOnInit(): void {

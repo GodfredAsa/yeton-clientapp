@@ -12,6 +12,8 @@ export class SidebarComponent {
     {icon: "", name: "Stocks", link: 'dashboard/stocks'},
     {icon: "", name: "Orders" , link: 'dashboard/orders'},
     {icon: "", name: "Categories", link: 'dashboard/categories'},
+    {icon: "", name: "Users", link: 'dashboard/users'},
+
     {icon: "", name: "FAQs", link: 'dashboard/faqs'},
   ]
 

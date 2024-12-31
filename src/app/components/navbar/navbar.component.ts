@@ -11,8 +11,11 @@ import { UtilService } from '../services/util.service';
 })
 export class NavbarComponent {
   @Input() imageUrl;
+  @Input() usernameFirstVChar: string;
 
   private subscriptions: Subscription[] = []
+
+
 
 
   constructor(

@@ -107,13 +107,12 @@ addFAQ(){
       {title: this.faqForm.value.title, message: this.faqForm.value.message})
       .subscribe({
       next: (res) => {
-        // window.location.reload()
+        window.location.reload()
         console.log(res.message);
-
       },
       error: (err) => {
         console.log(err.error.message);
-        // window.location.reload()
+        window.location.reload()
 
       }
     }

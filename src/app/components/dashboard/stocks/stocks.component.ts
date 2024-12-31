@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoryModel } from '../../model/category.model';
 import { UtilService } from '../../services/util.service';
 import { ItemModel } from '../../model/item.model';
+import { StockSummary } from '../../model/stock.summary.model';
 
 @Component({
   selector: 'app-stocks',
@@ -14,16 +15,22 @@ import { ItemModel } from '../../model/item.model';
 })
 export class StocksComponent implements OnInit, OnDestroy{
 
-  successMessage: string = "Created successfully "
+  notificationMessage: string;
+  isSuccess: boolean;
+  isError: boolean;
+
   stocks: Stock[] = [];
   numberOfStocks: number = 20;
   selectedStock: Stock;
+  selectedStockToBeUpdate: Stock;
+
   subscriptions: Subscription[] = []
 
   categories: CategoryModel[] = []
+  stockSummary: StockSummary;
 
-  showStockModal: boolean = false
-
+  showAddItem: boolean = false;
+  showUpdateItem: boolean = false;
 
     addItemForm = new FormGroup({
       categoryId: new FormControl("", [Validators.required]),
@@ -38,22 +45,21 @@ export class StocksComponent implements OnInit, OnDestroy{
       hasVendor: new FormControl(true, [Validators.required, Validators.minLength(5)]),
       hasGallery: new FormControl(true, [Validators.required, Validators.minLength(5)]),
       forSale: new FormControl(true, [Validators.required, Validators.minLength(5)]),
-
     })
 
   constructor(
     private _stockService :StockService,
-        private _utilsService : UtilService
-
+    private _utilsService : UtilService
   ){}
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe())
   }
 
-
   ngOnInit(): void {
     this.getStockOfItems();
-    this.categories = this._utilsService.getObjectFromStorage("categories")
+    this.categories = this._utilsService.getObjectFromStorage("categories");
+    this.getStockSummaries()
   }
 
   searchStocks(search: string) {
@@ -65,8 +71,7 @@ export class StocksComponent implements OnInit, OnDestroy{
     const searchedStocks: Stock[] = [];
     const searchLower = search.toLocaleLowerCase();
     for (let stock of this.stocks) {
-      if (
-        stock.itemName.toLocaleLowerCase().includes(searchLower) ||
+      if (stock.itemName.toLocaleLowerCase().includes(searchLower) ||
         (stock.category && stock.category.toLocaleLowerCase().includes(searchLower)) ||
         (stock.brand && stock.brand.toLocaleLowerCase().includes(searchLower)) ||
         (stock.model && stock.model.toLocaleLowerCase().includes(searchLower)) ||
@@ -77,7 +82,6 @@ export class StocksComponent implements OnInit, OnDestroy{
         searchedStocks.push(stock);
       }
     }
-
     this.stocks = searchedStocks.length > 0 ? searchedStocks : this.getStockOfItems();
   }
 
@@ -89,32 +93,46 @@ export class StocksComponent implements OnInit, OnDestroy{
         },
         error: (err) => {
           console.log(err);
-        }}))
-
-        return this.stocks;
+        }
+      }))
+      return this.stocks;
   }
 
   getStock(stock: Stock){
    this.selectedStock = stock
   }
 
+  getUpdateStock(stock: Stock){
+    if(stock === this.selectedStock){
+      this.selectedStockToBeUpdate = stock
+      this._utilsService.setObjectToLocalStorage('selectedStock', stock);
+
+    }else{
+      this.selectedStockToBeUpdate = stock
+      this._utilsService.setObjectToLocalStorage('selectedStock', stock);
+
+    }
+      // this.selectedStockToBeUpdate = stock
+      // console.log(stock);
+      // this._utilsService.setObjectToLocalStorage('selectedStock', stock);
+      this.showUpdateItem = !this.showUpdateItem
+   }
+
   showSelling(forSale: boolean) : string{
     return forSale ? "Yes" : "No";
   }
-
 
   unSelectStock(){
     this.selectedStock = null
   }
 
-
   deleteStock(){
     this.subscriptions.push(
       this._stockService.deleteStock(this.selectedStock.itemId).subscribe({
         next: (res) => {
-          window.location.reload()
+          window.location.reload();
         }, error: (err) => {
-          window.location.reload()
+          window.location.reload();
         }
       })
     )
@@ -122,13 +140,12 @@ export class StocksComponent implements OnInit, OnDestroy{
 
 
   showAddStockModal(){
-    this.showStockModal = !this.showStockModal
+    this.showAddItem = !this.showAddItem
   }
 
   changeOldToSlightlyUsed(name: string): string{
     return name === "OLD" ? "Slightly Used " : name.toLocaleLowerCase();
   }
-
 
   addItemToStock(){
     let item : ItemModel = {
@@ -145,21 +162,33 @@ export class StocksComponent implements OnInit, OnDestroy{
       hasVendor: this.addItemForm.value.hasVendor,
       cost: Number(this.addItemForm.value.cost)
     }
-
     this.subscriptions.push(
       this._stockService.addStock(item).subscribe({
         next: (res) => {
-          console.log(res);
-          window.location.reload()
+          window.location.reload();
         }, error: (err) => {
-          console.log("error adding stock item ");
-          window.location.reload()
+          window.location.reload();
+          console.log(err);
+        }
+      })
+    )
+  }
+
+
+  getStockSummaries(){
+    this.subscriptions.push(
+      this._stockService.getStockSummary().subscribe({
+        next: (res) => {
+          console.log(res);
+          this.stockSummary = res
+        }, error: (err) => {
+          console.log(err);
 
         }
       })
     )
-
-
   }
+
+
 
 }
