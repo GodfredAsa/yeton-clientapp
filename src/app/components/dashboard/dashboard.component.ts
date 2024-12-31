@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   loginToken: string;
   imageUrl: any;
 
+  firstCharOfLoginAdmin: string;
   constructor(
     private _utilService: UtilService,
     private _router: Router
@@ -33,7 +34,8 @@ ngOnDestroy(): void {
 
 
   ngOnInit(): void {
-    let user = this._utilService.getObjectFromStorage('user')
+    let user = this._utilService.getObjectFromStorage('user');
+    this.firstCharOfLoginAdmin = user.name[0]
     if(user){
       this.imageUrl = user?.imageUrl
     }

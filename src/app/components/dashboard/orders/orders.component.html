@@ -1,11 +1,11 @@
 <app-title title="Orders Summary"></app-title>
 
-<div class="sm:ml-64">
+<div class="sm:ml-64" *ngIf="orderSummary">
   <div class="rounded-lg dark:border-gray-700">
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-[#f7f7f7] p-6 rounded-md">
-      <lib-stats title="Total Orders" value="450"></lib-stats>
-      <lib-stats title="Total Cost of Orders" value="450"symbol="GHS"></lib-stats>
-      <lib-stats title="Total Profit" value="450"symbol="GHS"></lib-stats>
+      <lib-stats title="Pending Orders" value={{orderSummary.pendingOrders}}></lib-stats>
+      <lib-stats title="Total Cost of Orders" value={{orderSummary.costOfSoldItems}} symbol="GHS"></lib-stats>
+      <lib-stats title="Expected Profit" value={{orderSummary.expectedProfit}} symbol="GHS"></lib-stats>
       </div>
   </div>
 </div>
@@ -38,7 +38,9 @@
                       <th scope="col" class="px-6 py-3"> Date</th>
                       <th scope="col" class="px-6 py-3"> Order Status</th>
                       <th scope="col" class="px-6 py-3"> Qty</th>
-                      <th scope="col" class="px-6 py-3"> Total Price (GHS)</th>
+                      <th scope="col" class="px-6 py-3"> Cost (GHS)</th>
+                      <th scope="col" class="px-6 py-3">Price (GHS)</th>
+                      <th scope="col" class="px-6 py-3"> Profit (GHS)</th>
                       <th scope="col" class="px-6 py-3">Payment Status</th>
                       <th scope="col" class="px-6 py-3"> By </th>
                       <th scope="col" class="px-6 py-3"> View </th>
@@ -47,10 +49,13 @@
               <tbody>
                   <tr class="bg-white border-b hover:bg-gray-50 p-4 " *ngFor="let order of orders">
                       <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap ">{{order.item}}</th>
-                      <td class="px-6 py-4"> {{order.orderDate}} </td>
+                      <td class="px-6 py-4"> {{order.orderDate | date}} </td>
                       <td class="px-6 py-4"> {{order.orderStatus}} </td>
                       <td class="px-6 py-4"> {{order.quantity}} </td>
                       <td class="px-6 py-4"> {{order.totalCost}} </td>
+                      <td class="px-6 py-4"> {{order.price}} </td>
+                      <td class="px-6 py-4"> {{order.profit}} </td>
+
                       <td class="px-6 py-4"> {{order.paymentStatus}} </td>
                       <td class="px-6 py-4"> {{order.user}}</td>
                       <td class="px-6 py-4 flex justify-between">
@@ -116,11 +121,11 @@
                 </tr>
                 <tr>
                   <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Price</td>
-                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">${{selectedOrder.price}}</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">GHS {{selectedOrder.price}}</td>
                 </tr>
                 <tr>
                   <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Total Cost</td>
-                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">${{selectedOrder.totalCost}}</td>
+                  <td class="border border-gray-300 px-4 py-2 text-sm text-gray-800">GHS {{selectedOrder.totalCost}}</td>
                 </tr>
                 <tr>
                   <td class="border border-gray-300 px-4 py-2 text-sm text-gray-500">Order Status</td>

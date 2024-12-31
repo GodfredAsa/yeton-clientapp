@@ -38,4 +38,10 @@ export class UtilService {
   getObjectFromStorage(name: string): any{
     return JSON.parse(localStorage.getItem(name));
   }
+
+  formatToCurrency(amount: any) : string{
+    return  amount.toLocaleString('en-US');
+  }
+
+
 }

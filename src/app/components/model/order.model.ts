@@ -5,6 +5,7 @@ export interface OrderModel {
   totalCost: number;
   item: string;
   user: string;
+  profit: number;
   orderStatus: string;
   paymentStatus: string;
   orderDate: string;

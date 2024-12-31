@@ -8,6 +8,7 @@ import { AccountProfileComponent } from './components/dashboard/account-profile/
 import { FaqsComponent } from './components/dashboard/faqs/faqs.component';
 import { CategoriesComponent } from './components/dashboard/categories/categories.component';
 import { OrderComponent } from './components/dashboard/orders/orders.component';
+import { CustomersComponent } from './components/dashboard/customers/customers.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: "categories", component: CategoriesComponent},
       { path: "profile", component: AccountProfileComponent},
       { path: "orders", component: OrderComponent},
+      { path: "users", component: CustomersComponent},
       { path: "faqs", component: FaqsComponent},
 
 

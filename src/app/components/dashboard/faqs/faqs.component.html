@@ -1,7 +1,5 @@
 <app-title title="Frequently Asked Questions"></app-title>
 
-
-
 <section class="mt-8 ">
 <div class="w-[90%] md:w-[50%] lg:w-[50%] m-auto text-black mt-8">
   <div class="grid grid-col-1 gap-2 pb-12">
@@ -25,7 +23,11 @@
       <div class="p-4 card" *ngIf="selectedQuestion === faq" >
         <span>{{faq.message}}</span>
         <div class="flex justify-end m-4 gap-3">
-          <button class=" font-extrabold text-[#1e1e30]" (click)="isModalOpen = !isModalOpen">View</button>
+          <button class=" font-extrabold text-[#1e1e30]" (click)="isModalOpen = !isModalOpen">
+            <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-width="2.9" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
+            </svg>
+          </button>
         </div>
       </div>
     </div>

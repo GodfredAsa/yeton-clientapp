@@ -5,6 +5,40 @@
 
 
 .card{
-  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; */
   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+
+
+
+body {
+  font-family: "Barlow Condensed", serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+
+
+.notification {
+  @apply flex items-center p-4 rounded border-l-4;
+}
+
+.notification.success {
+  @apply border-green-500 bg-green-100 text-green-700;
+}
+
+.notification.error {
+  @apply border-red-500 bg-red-100 text-red-700;
+}
+
+.notification-icon {
+  @apply mr-3 text-current;
+}
+
+.notification-title {
+  @apply font-semibold;
+}
+
+.notification-message {
+  @apply text-sm;
 }

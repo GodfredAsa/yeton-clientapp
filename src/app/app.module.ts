@@ -18,12 +18,16 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { DonutPieChartComponent } from './components/charts/donut-pie-chart/donut-pie-chart.component';
 import { BarChartComponent } from './components/charts/bar-chart/bar-chart.component';
 import { StackBarChartComponent } from './components/charts/stack-bar-chart/stack-bar-chart.component';
-import { MonthlySalesChartComponent } from './components/charts/monthly-sales-chart/monthly-sales-chart.component';
+
 import { CategoriesComponent } from './components/dashboard/categories/categories.component';
 import { FaqsComponent } from './components/dashboard/faqs/faqs.component';
 import { TitleComponent } from './components/title/title.component';
 import { OrderComponent } from './components/dashboard/orders/orders.component';
 import { StatsComponent } from './components/stats/stats.component';
+import { UpdateStockComponent } from './components/dashboard/stocks/update-stock/update-stock.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { CustomersComponent } from './components/dashboard/customers/customers.component';
+import { LineChartComponent } from './components/charts/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +45,14 @@ import { StatsComponent } from './components/stats/stats.component';
     DonutPieChartComponent,
     BarChartComponent,
     StackBarChartComponent,
-    MonthlySalesChartComponent,
     CategoriesComponent,
     FaqsComponent,
     TitleComponent,
-    StatsComponent
+    StatsComponent,
+    UpdateStockComponent,
+    NotificationComponent,
+    CustomersComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,

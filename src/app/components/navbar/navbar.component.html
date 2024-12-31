@@ -3,11 +3,12 @@
   <a  class="flex items-center space-x-3 rtl:space-x-reverse"></a>
   <div class=" flex justify-end ">
 
-    <button type="button" class=" text-sm rounded-full relative " id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom" (click)="viewUserProfile()">
+    <button type="button" class=" text-sm rounded-full relative" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom" (click)="viewUserProfile()">
         <span class="sr-only">Open user menu</span>
-        <img class="w-[40px] rounded-full" src="{{imageUrl}}" alt="user photo">
+        <!-- <img class="w-[40px] rounded-full" src="{{imageUrl}}" alt="user photo"> -->
+         <span class="border rounded-full px-3 py-2 bg-[#fff] text-md font-extrabold hover:bg-[#000000] hover:border-[#000000] hover:text-white">{{usernameFirstVChar}}</span>
       </button>
-      <button type="button" class=" text-sm rounded-md md:me-0 mx-4 border border-black p-1.5 hover:bg-[#1f2937] hover:text-white" id="user-menu-button " aria-expanded="false" (click)="logoutUser()"     data-dropdown-placement="bottom">Logout
+      <button type="button" class=" text-sm rounded-md md:me-0 mx-4 border border-black p-1.5 hover:bg-[#1f2937] hover:text-white " id="user-menu-button " aria-expanded="false" (click)="logoutUser()"     data-dropdown-placement="bottom">Logout
       </button>
 
   </div>

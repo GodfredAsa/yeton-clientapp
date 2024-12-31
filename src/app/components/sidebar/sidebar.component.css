@@ -6,6 +6,7 @@
 
 .item:hover{
   color: black;
+  background-color: #edefe8;
 }
 .item.selected {
   background-color: #d8f36f;

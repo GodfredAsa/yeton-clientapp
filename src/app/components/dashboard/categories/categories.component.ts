@@ -34,6 +34,7 @@ export class CategoriesComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this._utilsService.getObjectFromStorage("categories")
     this.getCategories()
   }
 

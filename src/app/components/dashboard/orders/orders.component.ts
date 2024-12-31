@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OrderModel } from '../../model/order.model';
 import { OrderService } from '../../services/order.service';
 import { Subscription } from 'rxjs';
+import { OrderSummary } from '../../model/order.summary.model';
 
 @Component({
   selector: 'app-orders',
@@ -10,9 +11,12 @@ import { Subscription } from 'rxjs';
 })
 export class OrderComponent implements OnInit, OnDestroy{
 
-  subscriptions: Subscription[] = []
-  orders: OrderModel[] = []
-  allOrders: OrderModel[] = []
+  subscriptions :Subscription[] = []
+  orders :OrderModel[] = []
+  allOrders :OrderModel[] = []
+
+  orderSummary :OrderSummary;
+
 
   selectedOrder: OrderModel;
   selectedElement: string  = "PENDING";
@@ -26,7 +30,8 @@ export class OrderComponent implements OnInit, OnDestroy{
   ){}
 
   ngOnInit(): void {
-    this.getAllPendingOrders()
+    this.getAllPendingOrders();
+    this.getOrderSummaries()
    }
 
 
@@ -68,6 +73,20 @@ export class OrderComponent implements OnInit, OnDestroy{
         }, error: (err) => {
           console.log(err.error.message);
           window.location.reload();
+        }
+      })
+    )
+  }
+
+  getOrderSummaries(){
+    this.subscriptions.push(
+      this._orderService.getOrderSummary().subscribe({
+        next: (res) => {
+          this.orderSummary = res;
+          console.log(res);
+        }, error: (err) => {
+          console.log(err.error.message);
+
         }
       })
     )
