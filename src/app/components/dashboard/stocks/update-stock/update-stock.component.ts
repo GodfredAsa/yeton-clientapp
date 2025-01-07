@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CategoryModel } from 'src/app/components/model/category.model';
-import { ItemModel } from 'src/app/components/model/item.model';
 import { Stock } from 'src/app/components/model/stock.model';
 import { StockService } from 'src/app/components/services/stock.service';
 import { UtilService } from 'src/app/components/services/util.service';
@@ -22,22 +21,6 @@ export class UpdateStockComponent implements OnInit{
 
   addItemForm: FormGroup
 
-  // addItemForm = new FormGroup({
-  //   categoryId: new FormControl("", [Validators.required]),
-  //   name: new FormControl("", [Validators.required, Validators.minLength(5)]),
-  //   brand: new FormControl("", [Validators.required, Validators.minLength(5)]),
-  //   condition: new FormControl("", [Validators.required, Validators.minLength(5)]),
-  //   model: new FormControl("", [Validators.required, Validators.minLength(5)]),
-  //   price: new FormControl(0, [Validators.required, Validators.minLength(5)]),
-  //   stock: new FormControl(0, [Validators.required, Validators.minLength(5)]),
-  //   cost: new FormControl(0, [Validators.required, Validators.minLength(5)]),
-  //   image: new FormControl("", [Validators.required, Validators.minLength(5)]),
-  //   hasVendor: new FormControl(true, [Validators.required, Validators.minLength(5)]),
-  //   hasGallery: new FormControl(true, [Validators.required, Validators.minLength(5)]),
-  //   forSale: new FormControl(true, [Validators.required, Validators.minLength(5)]),
-
-  // })
-
   constructor(
         private _stockService :StockService,
         private _utilsService : UtilService,
@@ -46,9 +29,8 @@ export class UpdateStockComponent implements OnInit{
 
   ngOnInit(): void {
     this.categories = this._utilsService.getObjectFromStorage("categories");
-    this.selectedStock = this._utilsService.getObjectFromStorage('selectedStock');
-    setTimeout(() => {
-      console.log(`SELECTED STOCK ${this.selectedStock.itemName}`);
+
+    this.selectedStock = this._utilsService.getObjectFromStorage("stockUpdate");
 
       this.addItemForm = this.fb.group({
         name: [this.selectedStock.itemName],
@@ -58,14 +40,12 @@ export class UpdateStockComponent implements OnInit{
         price:[this.selectedStock.price],
         stock: [this.selectedStock.stock],
         image: [this.selectedStock.image],
-        hasGallery: [this.selectedStock.hasGallery],
-        forSale: [this.selectedStock.forSale],
+        hasGallery: [false],
+        forSale: [true],
         hasVendor: [this.selectedStock.hasVendor],
         cost: [this.selectedStock.cost],
         categoryId: [this.categories[0].categoryId],
       })
-    }, 300);
-
 
   }
 
@@ -77,25 +57,13 @@ export class UpdateStockComponent implements OnInit{
           window.location.reload()
         }, error: (err) => {
           console.log(err.error.message);
-
         }
       })
     )
   }
 
-  closeModalRemoveSelectedStock(){
-
-
-    if(!this.showUpdateItem){
-      this._utilsService.removeValueFromLocalStorage("selectedStock");
-      this.selectedStock = null
-    }
-  this.showUpdateItem = !this.showUpdateItem;
-
-
-
+  closeModal(){
+  this.showUpdateItem = !this.showUpdateItem
   }
-
-
 
 }

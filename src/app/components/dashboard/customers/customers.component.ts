@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { Subscription } from 'rxjs';
 import { UserModel } from '../../model/user.model';
 import { UserSummary } from '../../model/user.summary.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-customers',
@@ -17,8 +18,17 @@ export class CustomersComponent implements OnInit, OnDestroy{
 
   showUserViewModal: boolean = false;
   deleteSelectedUserModal: boolean = false;
-
   selectedUser: UserModel;
+
+
+  addAdminForm = new FormGroup({
+       name: new FormControl("", [Validators.required, Validators.minLength(5)]),
+       phone: new FormControl("", [Validators.required, Validators.minLength(5)]),
+       imageUrl: new FormControl("", [Validators.required, Validators.minLength(5)]),
+       gender: new FormControl("", [Validators.required, Validators.minLength(5)]),
+       password: new FormControl("", [Validators.required, Validators.minLength(5)]),
+
+     })
 
 constructor(
   private _userService :UserService
@@ -101,6 +111,28 @@ searchedCustomers(search: string){
     }
   }
   this.customers = searchedCustomers.length > 0 ? searchedCustomers : this.getAllCustomers();
+}
+
+
+createAdmin(){
+  console.log(this.addAdminForm.value);
+  const userDetails = {
+    name: this.addAdminForm.value.name,
+    phone: this.addAdminForm.value.phone,
+    imageUrl: this.addAdminForm.value.imageUrl,
+    gender: this.addAdminForm.value.gender,
+    password: this.addAdminForm.value.password
+  }
+  this._subscriptions.push(
+    this._userService.createAdmin( userDetails.name, userDetails.phone, userDetails.imageUrl, userDetails.password, userDetails.gender).subscribe({
+      next: (res) => {
+        window.location.reload();
+      }, error: (err) => {
+        console.log(err.error.message);
+      }
+    })
+  )
+
 }
 
 
