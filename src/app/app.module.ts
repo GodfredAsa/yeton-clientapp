@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductOverviewComponent } from './components/dashboard/product-overview/product-overview.component';
-import { UsersOnlineComponent } from './components/dashboard/users-online/users-online.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StocksComponent } from './components/dashboard/stocks/stocks.component';
 import { AccountProfileComponent } from './components/dashboard/account-profile/account-profile.component';
@@ -18,7 +16,6 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { DonutPieChartComponent } from './components/charts/donut-pie-chart/donut-pie-chart.component';
 import { BarChartComponent } from './components/charts/bar-chart/bar-chart.component';
 import { StackBarChartComponent } from './components/charts/stack-bar-chart/stack-bar-chart.component';
-
 import { CategoriesComponent } from './components/dashboard/categories/categories.component';
 import { FaqsComponent } from './components/dashboard/faqs/faqs.component';
 import { TitleComponent } from './components/title/title.component';
@@ -36,7 +33,6 @@ import { LineChartComponent } from './components/charts/line-chart/line-chart.co
     DashboardComponent,
     ProductOverviewComponent,
     OrderComponent,
-    UsersOnlineComponent,
     NavbarComponent,
     StocksComponent,
     AccountProfileComponent,
