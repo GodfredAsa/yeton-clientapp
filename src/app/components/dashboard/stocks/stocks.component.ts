@@ -43,7 +43,7 @@ export class StocksComponent implements OnInit, OnDestroy{
       cost: new FormControl("", [Validators.required, Validators.minLength(5)]),
       image: new FormControl("", [Validators.required, Validators.minLength(5)]),
       hasVendor: new FormControl(true, [Validators.required, Validators.minLength(5)]),
-      hasGallery: new FormControl(true, [Validators.required, Validators.minLength(5)]),
+      hasGallery: new FormControl(false, [Validators.required, Validators.minLength(5)]),
       forSale: new FormControl(true, [Validators.required, Validators.minLength(5)]),
     })
 
@@ -100,30 +100,24 @@ export class StocksComponent implements OnInit, OnDestroy{
 
   getStock(stock: Stock){
    this.selectedStock = stock
+  //  this.selectedStockToBeUpdate = this.selectedStock
   }
 
+
   getUpdateStock(stock: Stock){
-    if(stock === this.selectedStock){
-      this.selectedStockToBeUpdate = stock
-      this._utilsService.setObjectToLocalStorage('selectedStock', stock);
+    this.selectedStockToBeUpdate = stock
+    this.showUpdateItem = !this.showUpdateItem
+    this._utilsService.setObjectToLocalStorage("stockUpdate", this.selectedStockToBeUpdate)
+  }
 
-    }else{
-      this.selectedStockToBeUpdate = stock
-      this._utilsService.setObjectToLocalStorage('selectedStock', stock);
 
-    }
-      // this.selectedStockToBeUpdate = stock
-      // console.log(stock);
-      // this._utilsService.setObjectToLocalStorage('selectedStock', stock);
-      this.showUpdateItem = !this.showUpdateItem
-   }
 
   showSelling(forSale: boolean) : string{
     return forSale ? "Yes" : "No";
   }
 
   unSelectStock(){
-    this.selectedStock = null
+    this.selectedStock = null;
   }
 
   deleteStock(){

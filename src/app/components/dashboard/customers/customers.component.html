@@ -15,13 +15,6 @@
   <div class="flex justify-between">
     <form #searchForm="ngForm">
       <input class="font-semibold px-2 py-4  border border-black focus:outline-none focus:ring-1 focus:ring-black focus:border-black ml-4 rounded-md mt-2" placeholder="Search ..." ngModel type="search" name="searchName" #searchInput="ngModel" (ngModelChange)="searchedCustomers(searchForm.value.searchName)"/>
-
-      <!-- <button class="mx-2 py-2.5 text-black" (click)="reloadPage()">
-        <svg class="w-[60px] h-[40px] pt-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" >
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.7" d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"/>
-        </svg>
-
-      </button> -->
      </form>
 
     <form></form>
@@ -60,9 +53,6 @@
                     <span *ngIf="customer.isBlock">Activate</span>
                     <span *ngIf="!customer.isBlock">Make Inactive</span>
                 </button>
-                <!-- <button type="button" class="px-2 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-black  dark:border-gray-700 dark:hover:text-white dark:hover:bg-gray-700 focus:text-black ">
-                  Update
-                </button> -->
               </div>
             </td>
           </tr>
@@ -89,36 +79,36 @@
           </div>
           <!-- Modal body -->
           <div class="p-4 md:p-5 space-y-4">
-            <form class="max-w-xl mx-auto p-6 space-y-6" [formGroup]="faqForm">
+            <form class="max-w-xl mx-auto p-6 space-y-6" [formGroup]="addAdminForm" (ngSubmit)="createAdmin()">
               <!-- Text Input -->
               <div class="space-y-2">
                 <label class="block text-sm font-medium text-gray-700" >Full Name</label>
                 <input type="text" class="w-full px-4 py-4 border border-black rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:border-black"
-                  placeholder="title" formControlName="Enter Admin preferred Name ">
+                  placeholder="Enter Name" formControlName="name">
               </div>
 
               <div class="space-y-2">
                 <label class="block text-sm font-medium text-gray-700" >Phone Number</label>
                 <input type="text" class="w-full px-4 py-4 border border-black rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:border-black"
-                  placeholder="title" formControlName="phone number of admin">
+                  placeholder="phone number" formControlName="phone">
               </div>
 
               <div class="space-y-2">
                 <label class="block text-sm font-medium text-gray-700" >Image Link </label>
                 <input type="text" class="w-full px-4 py-4 border border-black rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:border-black"
-                  placeholder="title" formControlName="image link">
+                  placeholder="image link" formControlName="imageUrl">
               </div>
 
               <div class="space-y-2">
                 <label class="block text-sm font-medium text-gray-700" >Gender</label>
                 <input type="text" class="w-full px-4 py-4 border border-black rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:border-black"
-                  placeholder="title" formControlName="select gender">
+                  placeholder="MALE or FEMALE" formControlName="gender">
               </div>
 
               <div class="space-y-2">
-                <label class="block text-sm font-medium text-gray-700" >Password (4 Numbers)</label>
+                <label class="block text-sm font-medium text-gray-700" >Pin (4 Numbers)</label>
                 <input type="password" class="w-full px-4 py-4 border border-black rounded-lg focus:outline-none focus:ring-1 focus:ring-black focus:border-black" minlength="4" maxlength="4"
-                   formControlName="title">
+                   formControlName="password">
               </div>
 
                <button
@@ -126,7 +116,6 @@
                   class=" px-4 py-4 bg-black text-white rounded-lg transition-colors duration-200 text-xl w-full"
                  > Create Admin
                 </button>
-
             </form>
 
           </div>

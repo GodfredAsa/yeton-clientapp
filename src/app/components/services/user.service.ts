@@ -31,6 +31,10 @@ export class UserService {
     return this.http.put<CustomResponse>(`${this.host}/admin/users/${phone}/blacklist`, {})
   }
 
+  createAdmin(name: string, phone: string, imageUrl: string, password: string, gender: string): Observable<any>{
+    return this.http.post<any>(`${this.host}/users/admin`, {name, phone, imageUrl, password, gender})
+  }
+
 
 
 }
